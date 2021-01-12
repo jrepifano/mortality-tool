@@ -10,10 +10,10 @@ from sklearn.impute import IterativeImputer, KNNImputer
 
 def load_data():
     dir = os.getcwd()
-    X_eicu = np.load(dir+'/data/X_eicu.npy')
-    y_eicu = np.load(dir+'/data/y_eicu.npy')
-    X_mimc = np.load(dir+'/data/X_mimic.npy')
-    y_mimic = np.load(dir+'/data/y_mimic.npy')
+    X_eicu = np.load(dir+'/../data/X_eicu.npy')
+    y_eicu = np.load(dir+'/../data/y_eicu.npy')
+    X_mimc = np.load(dir+'/../data/X_mimic.npy')
+    y_mimic = np.load(dir+'/../data/y_mimic.npy')
     X = np.vstack((X_eicu, X_mimc))
     y = np.hstack((y_eicu, y_mimic))
     # imputer = IterativeImputer()
@@ -28,9 +28,9 @@ def load_data():
 
 def load_new_data(feat_names):
     dir = os.getcwd()
-    X = np.load(dir+'/data/x_eicu_all.npy')
-    y = np.load(dir+'/data/y_eicu_all.npy')
-    loc = np.load(dir+'/data/75_tol_feats.npy')
+    X = np.load(dir+'/../data/x_eicu_all.npy')
+    y = np.load(dir+'/../data/y_eicu_all.npy')
+    loc = np.load(dir+'/../data/75_tol_feats.npy')
     X = X[:, loc]
     X = IterativeImputer(verbose=1).fit_transform(X)
     X = StandardScaler().fit_transform(X)

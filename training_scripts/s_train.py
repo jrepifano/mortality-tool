@@ -78,9 +78,9 @@ class data_loader(Dataset):
 
 def load_data():
     cd = os.getcwd()
-    x_eicu = pd.read_csv(cd+'/data/x_eicu.csv')
-    y_eicu = pd.read_csv(cd+'/data/y_eicu.csv')
-    mimic = pd.read_csv(cd + '/data/mimic.csv')
+    x_eicu = pd.read_csv(cd+'/../data/x_eicu.csv')
+    y_eicu = pd.read_csv(cd+'/../data/y_eicu.csv')
+    mimic = pd.read_csv(cd + '/../data/mimic.csv')
     assert np.all(x_eicu['patientunitstayid'].to_numpy() == y_eicu['patientunitstayid'].to_numpy())
     feature_list = ['lactate', 'oobventday1', 'eyes', 'motor', 'verbal', 'albumin_x',
                     'age', 'creatinine_x', 'BUN', 'PT - INR', 'WBC x 1000', 'meanbp']
@@ -126,11 +126,11 @@ def main():
         preds.append(torch.sigmoid(mu).detach().cpu().numpy())
         diags.append([np.mean(np.diagonal(matrix.detach().cpu().numpy())) for matrix in sigma])
     torch.save(model.state_dict(), os.getcwd()+'/saved_models/s.pt')
-    np.save(os.getcwd()+'/saved_models/s_imputer', imputer, allow_pickle=True)
-    np.save(os.getcwd()+'/saved_models/s_scaler', scaler, allow_pickle=True)
-    np.save(os.getcwd()+'/saved_models/s_train_labels', y)
-    np.save(os.getcwd()+'/saved_models/s_train_preds', np.vstack(preds).reshape(-1))
-    np.save(os.getcwd()+'/saved_models/s_train_diags', np.hstack(diags))
+    np.save(os.getcwd()+'/../saved_models/s_imputer', imputer, allow_pickle=True)
+    np.save(os.getcwd()+'/../saved_models/s_scaler', scaler, allow_pickle=True)
+    np.save(os.getcwd()+'/../saved_models/s_train_labels', y)
+    np.save(os.getcwd()+'/../saved_models/s_train_preds', np.vstack(preds).reshape(-1))
+    np.save(os.getcwd()+'/../saved_models/s_train_diags', np.hstack(diags))
 
 
 if __name__ == '__main__':

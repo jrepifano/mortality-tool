@@ -7,9 +7,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.feature_selection import mutual_info_classif
 
 id = 'subject_id'   # I get tired of typing this
-labels = pd.read_csv(os.getcwd()+'/data/admissions.csv')
+labels = pd.read_csv(os.getcwd()+'/../data/admissions.csv')
 labels = labels[[id, 'hospital_expire_flag']]
-lab_items = pd.read_csv(os.getcwd()+'/data/d_labitems.csv')
+lab_items = pd.read_csv(os.getcwd()+'/../data/d_labitems.csv')
 lab_items = lab_items[['itemid', 'label']]
-lab_values = pd.read_csv(os.getcwd()+'/data/labevents.csv')
+lab_values = pd.read_csv(os.getcwd()+'/../data/labevents.csv')
 pass

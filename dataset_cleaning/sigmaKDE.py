@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 
 
 def main():
-    preds = np.load(os.getcwd()+'/saved_models/s_train_preds.npy')
-    diags = np.load(os.getcwd()+'/saved_models/s_train_diags.npy')
-    y = np.load(os.getcwd()+'/saved_models/s_train_labels.npy')
+    preds = np.load(os.getcwd()+'/../saved_models/s_train_preds.npy')
+    diags = np.load(os.getcwd()+'/../saved_models/s_train_diags.npy')
+    y = np.load(os.getcwd()+'/../saved_models/s_train_labels.npy')
     right = np.argwhere(np.round(preds) == y).reshape(-1)
     wrong = np.argwhere(np.round(preds) != y).reshape(-1)
 

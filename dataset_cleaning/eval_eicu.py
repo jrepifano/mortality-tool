@@ -8,15 +8,15 @@ from sklearn.feature_selection import mutual_info_classif
 
 print('Processing Data...')
 id = 'patientunitstayid'    # I get tired of typing this
-labels = pd.read_csv(os.getcwd()+'/data/apachePatientResult.csv')
+labels = pd.read_csv(os.getcwd()+'/../data/apachePatientResult.csv')
 labels = labels[[id, 'actualicumortality']].replace(['ALIVE', 'EXPIRED'], [0, 1]).drop_duplicates()
 apachevar = pd.read_csv(os.getcwd()+'/data/apacheApsVar.csv')
 feat_list = [id, 'intubated', 'wbc', 'temperature', 'respiratoryrate', 'sodium', 'heartrate', 'meanbp',
              'ph', 'hematocrit', 'creatinine', 'albumin', 'pao2', 'pco2', 'bun', 'glucose', 'bilirubin', 'fio2']
 apachevar = apachevar[feat_list].replace(-1, np.nan)
-labs = pd.read_csv(os.getcwd()+'/data/lab.csv')
+labs = pd.read_csv(os.getcwd()+'/../data/lab.csv')
 labs = labs.pivot_table(index=id, columns='labname', values='labresult').replace(-1, np.nan)
-indicators = pd.read_csv(os.getcwd()+'/data/apachePredVar.csv')
+indicators = pd.read_csv(os.getcwd()+'/../data/apachePredVar.csv')
 feat_list = [id, 'gender', 'age', 'verbal', 'motor', 'eyes', 'aids', 'hepaticfailure',
              'lymphoma', 'metastaticcancer', 'leukemia', 'immunosuppression', 'cirrhosis', 'midur',
              'oobventday1', 'oobintubday1', 'diabetes', 'pao2', 'fio2', 'creatinine']

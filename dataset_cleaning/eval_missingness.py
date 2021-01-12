@@ -10,10 +10,10 @@ from sklearn.impute import IterativeImputer, KNNImputer
 
 def load_data():
     dir = os.getcwd()
-    X_eicu = np.load(dir+'/data/X_eicu.npy')
-    y_eicu = np.load(dir+'/data/y_eicu.npy')
-    X_mimc = np.load(dir+'/data/X_mimic.npy')
-    y_mimic = np.load(dir+'/data/y_mimic.npy')
+    X_eicu = np.load(dir+'/../data/X_eicu.npy')
+    y_eicu = np.load(dir+'/../data/y_eicu.npy')
+    X_mimc = np.load(dir+'/../data/X_mimic.npy')
+    y_mimic = np.load(dir+'/../data/y_mimic.npy')
     X = np.vstack((X_eicu, X_mimc))
     y = np.hstack((y_eicu, y_mimic))
     # imputer = IterativeImputer()

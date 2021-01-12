@@ -54,9 +54,9 @@ class Model(torch.nn.Module):
 
 def load_data():
     cd = os.getcwd()
-    x_eicu = pd.read_csv(cd+'/data/x_eicu.csv')
-    y_eicu = pd.read_csv(cd+'/data/y_eicu.csv')
-    mimic = pd.read_csv(cd + '/data/mimic.csv')
+    x_eicu = pd.read_csv(cd+'../data/x_eicu.csv')
+    y_eicu = pd.read_csv(cd+'../data/y_eicu.csv')
+    mimic = pd.read_csv(cd+'../data/mimic.csv')
     assert np.all(x_eicu['patientunitstayid'].to_numpy() == y_eicu['patientunitstayid'].to_numpy())
     feature_list = ['lactate', 'oobventday1', 'eyes', 'motor', 'verbal', 'albumin_x',
                     'age', 'creatinine_x', 'BUN', 'PT - INR', 'WBC x 1000', 'meanbp']
@@ -121,9 +121,6 @@ def main():
     wandb.log({'accuracy': accuracy, 'precision': precision, 'sensitivity': sensitivity, 'specificitiy': specificity,
                'roc_auc': roc_auc, 'prc_auc': prc_auc, 'balanced_accuracy': balanced_acc,
                'neg_likelihood_ratio': neg_likelihood_ratio, 'pos_likelihood_ratio': pos_likelihood_ratio})
-    # wandb.log({"roc": wandb.plot.roc_curve(labels_all, np.hstack((np.zeros_like(logits_all.reshape(-1, 1)), logits_all.reshape(-1, 1))), labels=class_names, classes_to_plot=None)})
-    # wandb.log({"pr": wandb.plot.pr_curve(labels_all, np.hstack((np.zeros_like(logits_all.reshape(-1, 1)), logits_all.reshape(-1, 1))), labels=class_names, classes_to_plot=None)})
-    # wandb.log({"conf_mat": wandb.plot.confusion_matrix(np.round(logits_all), labels_all, class_names)})
 
 
 if __name__ == '__main__':
