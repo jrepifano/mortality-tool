@@ -21,7 +21,6 @@ the network is correct. Using this knowledge, we can create a
 confidence metric by computing at what percentage along the distribution
 of all sigmas in the training set does the test instance occur. That is to say, the closer
 the sigma value is to zero, the more confident we can say the network is in its decision.
-To compute the final confidence score, you just do 100-percentage. 
 
 ## Training and Performance
 
