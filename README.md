@@ -10,17 +10,16 @@ One normal network (deterministic) and another stochastic type neural network th
 trained using [Variational Density Propagation (VDP)](https://par.nsf.gov/servlets/purl/10161387) similar to 
 [Bayes by Backprop](https://arxiv.org/abs/1505.05424). This stochastic network propagates means
 and variances through the network. The means are used for inference.
-The variances can be used to quantify network uncertainty. 
+The variances can be used to quantify prediction uncertainty. 
 
 ![sigmaKDE](results/sigmaKDE.png)
 
-The above image shows the distribution of the mean sigma value
+The above image shows the distribution of the sigma value
 when the classifier is correct and when it's incorrect. This shows
 that on average, the sigma value for each instance is lower when
 the network is correct. Using this knowledge, we can create a 
-confidence metric by computing at what percentage along the distribution
-of all sigmas in the training set does the test instance occur. That is to say, the closer
-the sigma value is to zero, the more confident we can say the network is in its decision.
+confidence metric by computing the percentile at which the incoming sigma lies along the training sigma distribution. 
+That is to say, the closerthe sigma value is to zero, the more confident we can say the network is in its decision.
 
 ## Training and Performance
 
