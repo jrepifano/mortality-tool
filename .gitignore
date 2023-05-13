@@ -132,8 +132,8 @@ dmypy.json
 data/
 .idea
 .idea/
-*.png
 
 app_outputs/
 *.csv
 *.npy
+temp_results.txt
