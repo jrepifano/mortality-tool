@@ -1,4 +1,6 @@
 import os
+import sys
+sys.path.append(f'{os.getcwd()}')
 import torch
 import scipy
 import numpy as np
@@ -10,7 +12,7 @@ from sklearn.preprocessing import StandardScaler
 from imblearn.under_sampling import RandomUnderSampler
 from VDP_Layers import VDP_FullyConnected, VDP_Relu, VDP_Softmax
 from torch.utils.data import DataLoader, Dataset
-from sklearn.metrics import confusion_matrix, roc_auc_score, average_precision_score, balanced_accuracy_score
+from sklearn.metrics import confusion_matrix, roc_auc_score, average_precision_score, balanced_accuracy_score, accuracy_score
 
 
 os.environ["CUDA_DEVICE_ORDER"] = 'PCI_BUS_ID'
@@ -85,9 +87,9 @@ class data_loader(Dataset):
 
 def load_data():
     cd = os.getcwd()
-    x_eicu = pd.read_csv(cd+'/../data/x_eicu.csv')
-    y_eicu = pd.read_csv(cd+'/../data/y_eicu.csv')
-    mimic = pd.read_csv(cd + '/../data/mimic.csv')
+    x_eicu = pd.read_csv('data/x_eicu.csv')
+    y_eicu = pd.read_csv('data/y_eicu.csv')
+    mimic = pd.read_csv('data/mimic.csv')
     assert np.all(x_eicu['patientunitstayid'].to_numpy() == y_eicu['patientunitstayid'].to_numpy())
     feature_list = ['lactate', 'oobventday1', 'eyes', 'motor', 'verbal', 'albumin_x',
                     'age', 'creatinine_x', 'BUN', 'PT - INR', 'WBC x 1000', 'meanbp']
@@ -135,7 +137,7 @@ def main():
         x_train, y_train = RandomUnderSampler().fit_resample(x_train, y_train)
         trainset = data_loader(x_train, y_train)
         testset = data_loader(x_test, y_test)
-        trainloader = DataLoader(trainset, batch_size=1000, shuffle=True)
+        trainloader = DataLoader(trainset, batch_size=1000, shuffle=True, generator=torch.Generator(device='cuda'))
         testloader = DataLoader(testset, batch_size=1000, shuffle=True)
         model = VDPNet(31, 93, 94)
         no_epochs = 18

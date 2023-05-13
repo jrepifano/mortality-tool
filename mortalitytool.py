@@ -212,7 +212,7 @@ class stochastic:
             input_vector = self.scaler.transform(input_vec.reshape((1, -1)))
         trainset = data_loader(self.x, self.y)
         btchsz = len(self.x)//15
-        trainloader = DataLoader(trainset, batch_size=btchsz, shuffle=True, num_workers=2)
+        trainloader = DataLoader(trainset, batch_size=btchsz, shuffle=True, num_workers=2, generator=torch.Generator(device='cuda'))
         influences = []
         for itr, (batch_data, batch_labels) in enumerate(trainloader):
             infl = VDP_influence(batch_data, batch_labels, input_vector.reshape(1, -1), np.array([1.]), self.model, self.model.fullyCon4.mean_fc.weight)
