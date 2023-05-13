@@ -12,15 +12,15 @@ from scipy.stats import ks_2samp, chisquare, percentileofscore
 def calc_metrics(results):
     vdp_score = roc_auc_score(results['health'], results['vdp_pred'])
     det_score = roc_auc_score(results['health'], results['det_pred'])
-    print(f'VDP ROC AUC: {vdp_score}')
-    print(f'DET ROC AUC: {det_score}')
+    print(f'VDP ROC AUC: {vdp_score:.2f}')
+    print(f'DET ROC AUC: {det_score:.2f}')
 
     vdp_score = accuracy_score(results['health'], results['vdp_pred'].round())
     det_score = accuracy_score(results['health'], results['det_pred'].round())
     clinician_score = accuracy_score(results.dropna()['health'], results.dropna()['health_predicted'])
-    print(f'VDP Accuracy: {vdp_score}')
-    print(f'DET Accuracy: {det_score}')
-    print(f'Clinician Accuracy: {clinician_score}')
+    print(f'VDP Accuracy: {vdp_score:.2f}')
+    print(f'DET Accuracy: {det_score:.2f}')
+    print(f'Clinician Accuracy: {clinician_score:.2f}')
     
     
 def load_data():
@@ -291,9 +291,9 @@ def explanation_analysis():
 
 
 if __name__ == '__main__':
-    # classification_results()
+    classification_results()
     # feature_analysis()
     # uncertainty_analysis()
-    explanation_analysis()
+    # explanation_analysis()
 
     

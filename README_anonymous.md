@@ -1,7 +1,7 @@
 # mortality-tool
 This repository contains the code for the modeling backend of the 
 ICU mortality prediction app. The modeling effort is largely based
-on the previous work by [Epifano, et. al., 2020](https://jrepifano.github.io/papers/towards.pdf).
+on the previous work by
 The main difference is a new feature set chosen by mutual information, and the addition of another type
 of neural network. 
 
@@ -43,8 +43,7 @@ ratios for both of the top performing models were both around 3.5 and 0.22 respe
 
 For these models to give some meaningful utility to clinicians we must provide some kind of explanation of our prediction.
 Since a lot of my work has been done on influence functions, that's what I've decided to stick with here. Since
-Influence Functions are model agnositc, using them with the stochastic took some minimnal modifications to the code. I used the
-same implementation in my [influence-pytorch](https://github.com/jrepifano/influence-pytorch) repository. The values
+Influence Functions are model agnositc, using them with the stochastic took some minimnal modifications to the code. The values
 are normalized amongst themselves and placed in a bar chart, so it's actually interpretable. The directions can
 be interpreted as increases/decreases in loss, so, in a binary problem each direction can indicate that a feature
 contains information for either class depending on its direction.
@@ -53,7 +52,7 @@ contains information for either class depending on its direction.
 
 ## Web App
 
-All of this information is rolled into a pretty robust web app designed by [Stephen Glass](https://github.com/sglass520).
+All of this information is rolled into a pretty robust web app designed by 
 We decided on a web app due to its accessibility. The app is designed to be used by ICU clinicians when evaluating a patient
 to determine care. The below images show the UI for input/output as well as all the data we collect as feedback
 
