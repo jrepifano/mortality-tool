@@ -43,8 +43,8 @@ def load_data():
 
 
 def classification_results():
-    input_data = pd.read_csv('app_outputs_both_cohorts/react_DATA_20230329_table_inputs.csv')
-    output_data = pd.read_csv('app_outputs_both_cohorts/react_DATA_20230329_table_outputs.csv')
+    input_data = pd.read_csv('app_outputs_both_cohorts_5-17/_DATABASE_DUMP_20230517__table_inputs.csv')
+    output_data = pd.read_csv('app_outputs_both_cohorts_5-17/_DATABASE_DUMP_20230517__table_outputs.csv')
 
     print(f'Number of input samples {len(input_data)}')
     unique_ids = [elem for elem in output_data['patientID'].unique() if 'test' not in elem.lower()]
@@ -76,12 +76,14 @@ def classification_results():
     calc_metrics(results)
     print('Covid cohort metrics')
     calc_metrics(results.query('date < 2023'))
+    print(len(results.query('date < 2023')))
     print('normal cohort metrics')
     calc_metrics(results.query('date > 2023'))
+    print(len(results.query('date > 2023')))
     
 
 def load_all_data():
-    output_data = pd.read_csv('app_outputs_both_cohorts/react_DATA_20230329_table_outputs.csv')
+    output_data = pd.read_csv('app_outputs_both_cohorts_5-17/_DATABASE_DUMP_20230517__table_outputs.csv')
 
     full_feats = ['lactate', 'firstdayvent', 'gcseyes', 'gcsmotor', 'gcsverbal', 'albumin', 'age', 'bun', 'inr', 'wbc', 'map', 'creatinine']
 
@@ -218,7 +220,7 @@ def uncertainty_analysis():
     
     
 def explanation_analysis():
-    output_data = pd.read_csv('app_outputs_both_cohorts/react_DATA_20230329_table_outputs.csv')
+    output_data = pd.read_csv('app_outputs_both_cohorts_5-17/_DATABASE_DUMP_20230517__table_outputs.csv')
 
     full_feats = ['lactate', 'firstdayvent', 'gcseyes', 'gcsmotor', 'gcsverbal', 'albumin', 'age', 'bun', 'inr', 'wbc', 'map', 'creatinine']
 
@@ -291,8 +293,8 @@ def explanation_analysis():
 
 
 if __name__ == '__main__':
-    classification_results()
-    # feature_analysis()
+    # classification_results()
+    feature_analysis()
     # uncertainty_analysis()
     # explanation_analysis()
 

@@ -67,12 +67,13 @@ to determine care. The below images show the UI for input/output as well as all 
 
 The app was deployed twice. Once from January 2021-November 2021 (COVID-19 Surge) and then again from January 2023-May 2023. A total of 75 patients were entered into the app and of those, 33 patients had their mortality outcomes collected. The performance of each model can be readily compared to clinicians using classification accuracy. The results by cohort are as follows:
 
-|             | Clinician Prediction | Deterministic Network | Stochastic Network |
-|:-----------:|:--------------------:|:---------------------:|:------------------:|
-| Traning Set |           -          |     0.77 ±0.00        |    0.77±0.01       |
-| 2021 Cohort |         0.95         |          0.90         |        0.95        |
-| 2023 Cohort |         0.83         |          0.75         |        0.83        |
-|  Combined   |         0.90         |          0.84         |        0.90        |
+|             | Clinician Prediction |          | Deterministic Network |                 | Stochastic Network |                 |
+|:-----------:|:--------------------:|:--------:|:---------------------:|:---------------:|:------------------:|:---------------:|
+|             |        ROC AUC       | Accuracy |        ROC AUC        |     Accuracy    |       ROC AUC      |     Accuracy    |
+| Traning Set |           -          |     -    |    0.87$\pm$(0.00)    | 0.77$\pm$(0.00) |   0.87$\pm$(0.00)  | 0.77$\pm$(0.01) |
+| 2021 Cohort |           -          |   0.95   |          0.99         |       0.90      |        0.99        |       0.95      |
+| 2023 Cohort |           -          |   0.83   |          0.89         |       0.75      |        0.88        |       0.83      |
+|  Combined   |           -          |   0.90   |          0.93         |       0.84      |        0.90        |       0.90      |
 
 The uncertainty score explained above displayed interesting characteristics by cohort when compared to the training distribuition.
 ![train_uncertainty](results/train_uncertainty_kde.png)
